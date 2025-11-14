@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Touch Grass Design System - Nature-inspired, mobile-first */
+
+@layer base {
+  :root {
+    /* Core Brand Colors */
+    --background: 0 0% 100%;
+    --foreground: 210 15% 5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 15% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 15% 5%;
+
+    /* Primary */
+    --primary: 69 82% 58%;
+    --primary-foreground: 210 15% 5%;
+    --primary-glow: 69 82% 68%;
+
+    /* Secondary */
+    --secondary: 180 85% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted / Accent / Status */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 20% 30%;
+    --accent: 180 85% 45%;
+    --accent-foreground: 0 0% 100%;
+    --success: 69 82% 58%;
+    --success-foreground: 210 15% 5%;
+    --warning: 45 93% 47%;
+    --warning-foreground: 210 15% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border & Shadows */
+    --border: 210 40% 91%;
+    --input: 210 40% 96%;
+    --ring: 142 69% 58%;
+
+    /* Fonts & Radius */
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 210 11% 6%;
+    --foreground: 210 40% 98%;
+    --card: 210 11% 8%;
+    --card-foreground: 210 40% 98%;
+    --primary: 69 82% 58%;
+    --primary-foreground: 210 11% 15%;
+    --secondary: 180 85% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --border: 210 11% 18%;
+    --input: 210 11% 12%;
+    --ring: 142 69% 58%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-typewriter;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-cooper font-bold uppercase;
+  }
+}

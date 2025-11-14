@@ -1,0 +1,37 @@
+import { Linking } from 'react-native';
+import type { StoreApi, UseBoundStore } from 'zustand';
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function openLinkInBrowser(url: string) {
+  Linking.canOpenURL(url).then((canOpen) => canOpen && Linking.openURL(url));
+}
+
+type WithSelectors<S> = S extends { getState: () => infer T }
+  ? S & { use: { [K in keyof T]: () => T[K] } }
+  : never;
+
+export const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
+  _store: S
+) => {
+  let store = _store as WithSelectors<typeof _store>;
+  store.use = {};
+  for (let k of Object.keys(store.getState())) {
+    (store.use as any)[k] = () => store((s) => s[k as keyof typeof s]);
+  }
+
+  return store;
+};
+
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+// Derive online status from last_seen_at timestamp
+export function isOnlineFromLastSeen(lastSeenAt?: string | null, thresholdMs = 120000): boolean {
+  if (!lastSeenAt) return false;
+  const last = new Date(lastSeenAt).getTime();
+  if (isNaN(last)) return false;
+  return Date.now() - last < thresholdMs;
+}
