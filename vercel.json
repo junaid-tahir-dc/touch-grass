@@ -7,7 +7,7 @@
       "config": {
         "installCommand": "pnpm install --no-frozen-lockfile",
         "buildCommand": "pnpm web",
-        "outputDirectory": "web-build"
+        "outputDirectory": "dist"
       }
     }
   ]
