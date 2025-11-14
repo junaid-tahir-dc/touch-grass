@@ -13,6 +13,7 @@ import {
   ActivityIndicator,
   Alert
 } from 'react-native';
+import { MaterialIcons } from "@expo/vector-icons";
 import { ChallengeItem } from '@/api/challenges';
 // import { Badge } from '@/components/ui/badge';
 import { Challenge } from '@/types';
@@ -30,6 +31,8 @@ import { Badge } from '@/components/ui/badge';
 import { FeaturesComingSoonModal } from '@/components/ui/features-coming-soon-modal';
 import { FollowersModal } from '@/components/FollowersModal';
 import RadarProfileChart from '@/components/RadarChart';
+import HomeCardCarousel from '@/components/Challenges';
+import LatestUpdates from '@/components/LatestUpdates';
 
 export default function Feeds() {
   const router = useRouter();
@@ -44,6 +47,59 @@ export default function Feeds() {
   const [followersModalOpen, setFollowersModalOpen] = useState(false);
   const [followingModalOpen, setFollowingModalOpen] = useState(false);
   const { bookmarks, isBookmarked, toggleBookmark, removeBookmark, addBookmarkSilent, removeBookmarkSilent } = useBookmarks();
+  const challengeData = [
+    {
+      id: "1",
+      title: "WHIMSY DAY 1 - INDOOR PICNIC",
+      image: require("../../../assets/test.jpg"),
+      description:
+        "Spread a blanket on the floor, gather favorite snacks, and picnic indoors like it’s a tiny holiday.",
+      time: "5m",
+      difficulty: "EASY",
+    },
+    {
+      id: "2",
+      title: "WHIMSY DAY 2 - NATURE BREAK",
+      image: require("../../../assets/test.jpg"),
+      description:
+        "Spread a blanket on the floor, gather favorite snacks, and picnic indoors like it’s a tiny holiday.",
+      time: "5m",
+      difficulty: "EASY",
+    },
+    {
+      id: "3",
+      title: "WHIMSY DAY 3 - DIGITAL DETOX",
+      image: require("../../../assets/test.jpg"),
+      description:
+        "Spread a blanket on the floor, gather favorite snacks, and picnic indoors like it’s a tiny holiday.",
+      time: "10m",
+      difficulty: "EASY",
+    },
+  ];
+
+  const fitnessData = [
+    {
+      id: "1",
+      title: "Take a walk around the block",
+      image: require("../../../assets/test.jpg"),
+      time: "5m",
+      difficulty: "EASY",
+    },
+    {
+      id: "2",
+      title: "Take a walk around the block",
+      image: require("../../../assets/test.jpg"),
+      time: "5m",
+      difficulty: "EASY",
+    },
+    {
+      id: "3",
+      title: "Take a walk around the block",
+      image: require("../../../assets/test.jpg"),
+      time: "10m",
+      difficulty: "EASY",
+    },
+  ];
 
   // Filter saved challenges from bookmarks
   const savedChallenges = bookmarks.filter(bookmark => bookmark.type === 'challenge');
@@ -571,6 +627,12 @@ export default function Feeds() {
               </View>
             </View>
           </Card>
+
+          <HomeCardCarousel data={challengeData} title='New Self Care Challenges' icon={<MaterialIcons name="self-improvement" size={24} color="#777" />} color="#66E5E5" width={300} />
+
+          <HomeCardCarousel data={fitnessData} title='Quick Fitness Wins' icon={<MaterialIcons name="fitness-center" size={24} color="#777" />} color="lightyellow" width={200} />
+
+          <LatestUpdates />
 
           {/* Progress Overview */}
           <View className="p-4 border-b border-border bg-background/50">
