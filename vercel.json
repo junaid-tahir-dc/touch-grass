@@ -5,11 +5,10 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "web-build"
+        "installCommand": "pnpm install --no-frozen-lockfile",
+        "buildCommand": "pnpm web",
+        "outputDirectory": "web-build"
       }
     }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
